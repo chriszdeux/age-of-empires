@@ -2,6 +2,8 @@
 @import './variables';
 
 //Components
+@import './components/header';
+@import './components/cards';
 @import './components/civilizations';
 @import './components/units';
 @import './components/structures';
@@ -9,7 +11,21 @@
 
 //Media-Querys
 
+@import './media-queries/header-query';
+@import './media-queries/home-query';
 @import './media-queries/civilizations-query';
 @import './media-queries/units-query';
 @import './media-queries/structures-query';
 @import './media-queries/technology-query';
+
+body {
+  background-color: $background-color;
+  color: $font-color
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 5rem;
+  padding: 1rem;
+}

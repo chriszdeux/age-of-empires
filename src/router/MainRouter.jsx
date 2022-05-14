@@ -6,26 +6,25 @@ import {
   Link
 } from "react-router-dom";
 import { Civilizations } from '../components/Civilizations';
+import { Header } from '../components/header';
 import { Home } from '../components/Home';
 import { Structures } from '../components/Structures';
 import { Technologies } from '../components/Technologies';
 import { Units } from '../components/Units';
+import { RoutesApp } from '../constants/routes';
 
 export const MainRouter = () => {
   return (
     <>
     <Router>
-      <div>
-
+      <Header />
       <Routes>
-        <Route path="/" element={ <Home /> }/>
-        <Route path="/app" element={ <Home /> }/>
-        <Route path="/app/civilizations" element={ <Civilizations /> }/>
-        <Route path="/app/units" element={ <Units /> }/>
-        <Route path="/app/structures" element={ <Structures /> }/>
-        <Route path="/app/technology" element={ <Technologies /> }/>
+        {
+          RoutesApp.map(({ route, component }) => (
+            <Route path={ route } element={ component } key={ route }/>
+          ) )
+        }
       </Routes>
-    </div>
     </Router>
     </>
   )
