@@ -1,9 +1,15 @@
 import React from 'react'
+import { useDispatch } from 'react-redux';
+import { addCivilization } from '../../actions/actionsCivilization';
 import { icons } from '../../data/icons'
 
 export const CivilizationCard = ({ civilization }) => {
   const { name, expansion, army_type, unique_unit, unique_tech,  team_bonus, civilization_bonus  } = civilization
-  const { expansion_icon, castle_icon,  bonus_icon, like_icon, next_icon } = icons
+  const { expansion_icon, castle_icon,  bonus_icon, like_icon, next_icon } = icons;
+  const dispatch = useDispatch()
+  const handleAddCivilization = () => {
+    dispatch( addCivilization(civilization) )
+  }
   return (
     <article className='card'>
         <h3>Civilization: <span>{ name }</span></h3>
@@ -32,8 +38,8 @@ export const CivilizationCard = ({ civilization }) => {
       </ul>
 
       <div className='card__expand'>
-        <span>{ like_icon }</span>
-        <span>{ next_icon }</span>
+        <span onClick={ handleAddCivilization }>{ like_icon }</span>
+        <span >{ next_icon }</span>
         {/* <canvas className='glass'></canvas> */}
       </div>
       <canvas className='glass--background'></canvas>
