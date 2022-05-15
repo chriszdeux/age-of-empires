@@ -9,7 +9,7 @@ app.use(cors());
 
 
 
-app.get('/civilizations', async (req, res) => {
+app.get('./civilizations', async (req, res) => {
   const data = await axios.get(`${url}/civilizations`).then(response => {
     // console.log(response.data)
     return response.data
@@ -17,7 +17,7 @@ app.get('/civilizations', async (req, res) => {
 
   res.json(data)
 });
-app.get('/civilization/:id', async (req, res) => {
+app.get('./civilization/:id', async (req, res) => {
 
   const { id } = req.params
   console.log(id)
@@ -29,7 +29,7 @@ app.get('/civilization/:id', async (req, res) => {
   res.json(data)
 });
 
-app.get('/units', async (req, res) => {
+app.get('./units', async (req, res) => {
   const data = await axios.get(`${url}/units`).then(response => {
     // console.log(response.data)
     return response.data
@@ -39,7 +39,7 @@ app.get('/units', async (req, res) => {
 })
 
 
-app.get('/structures', async (req, res) => {
+app.get('./structures', async (req, res) => {
   const data = await axios.get(`${url}/structures`).then(response => {
     // console.log(response.data)
     return response.data
@@ -49,7 +49,7 @@ app.get('/structures', async (req, res) => {
 })
 
 
-app.get('/technologies', async (req, res) => {
+app.get('./technologies', async (req, res) => {
   const data = await axios.get(`${url}/technologies`).then(response => {
     // console.log(response.data)
     return response.data
