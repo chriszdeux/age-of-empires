@@ -6,24 +6,19 @@ import { types } from "../types/types";
 //   data: []
 // }
 
-export const civilizationsReducer = ( state = [], action ) => {
+export const technologyReducer = ( state = [], action ) => {
   // debugger
   switch (action.type) {
-    case types.add_civilization:
+    case types.add_technology:
       if(state.find( item => item.id === action.payload.id )) {
         
       }
       return [{...action.payload}, ...state];
-    case types.remove_civilization:
+    case types.remove_technology:
       return state.filter(item => {
         return item.id !== action.payload
       })
 
-    case types.save_civilizations:
-      return { ...action.payload }
-
-    case types.delete_civilizations:
-      return {}
     default:
       return state
   }

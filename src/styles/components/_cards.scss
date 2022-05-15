@@ -6,7 +6,7 @@
   justify-content: center;
   .card {
     width: 25rem;
-    min-height: 25rem;
+    min-height: 35rem;
     // border: 1px solid $active-color;
     margin: 1rem;
     padding: 1rem;
@@ -38,14 +38,14 @@
         }
       }
       .icon {
-        
+        font-size: $large-font;
         &:nth-child(2) {
           // border: 1px solid red;
           float: right;
           position: absolute;
           z-index: -1;
           right: 0;
-          filter: blur(.3rem);
+          filter: blur(.5rem);
         }
       }
     }

@@ -6,7 +6,10 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import { saveCivilizations } from '../actions/actionsCivilization';
+import { storeCivilizations } from '../actions/actionsCivilization';
+import { storeStructures } from '../actions/actionsStructures';
+import { storeUnits } from '../actions/actionsUnits';
+import { storeTechnologies } from '../actions/actionTechnologies';
 import { Civilizations } from '../components/Civilizations';
 import { Header } from '../components/header';
 import { MobileNavbar } from '../components/header/MobileNavbar';
@@ -24,13 +27,26 @@ export const MainRouter = () => {
 
   const civilizationsData = useCivilizations();
   const unitsData = useUnits();
-  const structureData = useStructures();
+  // debugger
+  const structuresData = useStructures();
   const technologiesData = useTechnologies();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(saveCivilizations(civilizationsData))
+    dispatch(storeCivilizations(civilizationsData))
   }, [  civilizationsData ])
+
+  useEffect(() => {
+    dispatch(storeUnits(unitsData))
+  }, [  unitsData ])
+
+  useEffect(() => {
+    dispatch(storeStructures(structuresData))
+  }, [  structuresData ])
+
+  useEffect(() => {
+    dispatch(storeTechnologies(technologiesData))
+  }, [  technologiesData ])
 
   const [show, setShow] = useState(false)
   const handleShow = () => {

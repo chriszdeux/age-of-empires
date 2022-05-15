@@ -5,8 +5,8 @@ import { useCivilizations } from '../../hooks/useCivilizations'
 import { CivilizationCard } from './CivilizationCard'
 
 export const Civilizations = () => {
-  const saveCivilizations = useSelector(state => state.civilizations_reducer)
-  const { loading, error, data, error_message } = saveCivilizations;
+  const storedCivilizations = useSelector(state => state.store_civilizations_reducer)
+  const { loading, error, data, error_message } = storedCivilizations;
   // debugger
   // const { error_message } = error && error
   // debugger

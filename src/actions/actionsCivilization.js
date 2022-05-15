@@ -15,16 +15,16 @@ export const delCivilization = ( data ) => {
   }
 }
 
-export const saveCivilizations = ( data ) => {
+export const storeCivilizations = ( data ) => {
   return {
-    type: types.save_civilizations,
+    type: types.store_civilizations,
     payload: data
   }
 }
 
-export const removeCivilizations = (  ) => {
+export const deleteStoreCivilizations = (  ) => {
   return {
-    type: types.remove_civilization,
+    type: types.delete_store_civilizations,
     payload: []
   }
 }

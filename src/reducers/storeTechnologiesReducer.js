@@ -6,13 +6,13 @@ const initialState = {
   data: []
 }
 
-export const dataCivilizationsReducer = ( state = initialState, action ) => {
+export const storeTechnologiessReducer = ( state = initialState, action ) => {
   // debugger
   switch (action.type) {
-    case types.save_civilizations:
+    case types.store_technologies:
       return { ...action.payload }
 
-    case types.delete_civilizations:
+    case types.delete_store_technologies:
       return initialState
     default:
       return state

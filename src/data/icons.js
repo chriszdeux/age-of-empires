@@ -13,7 +13,8 @@ import {
   GiExtraTime,
   GiEvilBook,
   GiCastle,
-  GiPodiumWinner
+  GiPodiumWinner,
+  GiStoneBlock
  } from 'react-icons/gi';
 import { IoReloadOutline } from 'react-icons/io5';
 import { AiOutlineEye, AiOutlineRight } from 'react-icons/ai'
@@ -25,6 +26,7 @@ export const icons = {
   search_icon: <RiSearchLine className="icon" />,
   wood_icon: <GiWoodPile className="icon food" />, 
   gold_icon: <GiGoldBar className="icon gold" />, 
+  stone_icon: <GiStoneBlock className="icon stone" />, 
   time_icon: <GiSandsOfTime className="icon time" />, 
   reload_icon: <IoReloadOutline className="icon reload" />, 
   attack_delay_icon: <GiSwordSpin className="icon atack--delay" />, 
@@ -40,6 +42,6 @@ export const icons = {
   expansion_icon: <GiEvilBook className="icon expansion" />, 
   castle_icon: <GiCastle className="icon castle" />, 
   bonus_icon: <GiPodiumWinner className="icon bonus" />, 
-  like_icon: <BiLike className="icon bonus" />, 
-  next_icon: <AiOutlineRight className="icon bonus" />, 
+  like_icon: <BiLike className="icon " />, 
+  next_icon: <AiOutlineRight className="icon" />, 
 }
