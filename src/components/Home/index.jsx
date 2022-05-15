@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { scrollTop } from '../../data/scrollTop'
 import { ListRegularCards } from '../cards/ListRegularCards'
 export const Home = () => {
-
+  useEffect(() => {
+    scrollTop()
+  }, [ ])
 // debugger
   return (
     <main className='container'>

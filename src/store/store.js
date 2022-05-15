@@ -11,6 +11,7 @@ import { structureReducer } from "../reducers/structureReducer";
 import { storeStructuresReducer } from "../reducers/storeStructuresReducer";
 import { technologyReducer } from "../reducers/technologyReducer";
 import { storeTechnologiessReducer } from "../reducers/storeTechnologiesReducer";
+import { handleDataReducer } from "../reducers/handleDataReducer";
 const persistConfig = {
   key: 'main-root',
   storage
@@ -28,7 +29,9 @@ const reducers = combineReducers({
   store_structures_reducer: storeStructuresReducer,
 
   add_technology_reducer: technologyReducer,
-  store_technologies_reducer: storeTechnologiessReducer
+  store_technologies_reducer: storeTechnologiessReducer,
+
+  handle_data_reducer: handleDataReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers)

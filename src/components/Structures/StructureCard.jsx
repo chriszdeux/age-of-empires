@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { useDispatch } from 'react-redux';
 import { addStructure } from '../../actions/actionsStructures';
+import { animations } from '../../data/animations';
 import { icons } from '../../data/icons';
+import { useIntersectionObserver } from '../../hooks/useIntersection';
 
 export const StructureCard = ({ structure }) => {
   const { age, armor, build_time, cost, expansion, hit_points, line_of_sight, name, special } = structure
@@ -14,9 +16,12 @@ export const StructureCard = ({ structure }) => {
     dispatch( addStructure(structure) )
   }
 
+  const refCard = useRef(null)
+    const isVisible = useIntersectionObserver(refCard)
+    const { fade_in } = animations
 // debugger
   return (
-    <article className='card'>
+    <article className={`card ${ isVisible ? fade_in : '' }`} ref={ refCard }>
         <h3>Structure: <span>{ name }</span></h3>
       <div className='card__info'>
         <p>Expansion: <span>{ expansion }</span></p>
@@ -85,7 +90,7 @@ export const StructureCard = ({ structure }) => {
 
       <div className='card__expand'>
         <span onClick={ handleAddStructure }>{ like_icon }</span>
-        <span >{ next_icon }</span>
+        {/* <span >{ next_icon }</span> */}
         {/* <canvas className='glass'></canvas> */}
       </div>
       <canvas className='glass--background'></canvas>

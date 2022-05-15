@@ -1,7 +1,11 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { actionHandleData } from '../../actions/actionHandleData'
 import { addTechnology } from '../../actions/actionTechnologies'
+import { animations } from '../../data/animations'
 import { icons } from '../../data/icons'
+import { useIntersectionObserver } from '../../hooks/useIntersection'
 
 export const TechnologyCard = ({ technology }) => {
   const {
@@ -18,11 +22,21 @@ export const TechnologyCard = ({ technology }) => {
   const { Food, Gold, Wood } = cost
   const { expansion_icon, age_icon, wood_icon, gold_icon, food_icon, time_icon, like_icon, next_icon, castle_icon } = icons
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const handleAddTechnology = () => {
     dispatch(addTechnology(technology))
   }
+  const refCard = useRef(null)
+  const isVisible = useIntersectionObserver(refCard)
+  const { fade_in } = animations
+
+
+  const handleFullInformation = () => {
+    dispatch(actionHandleData(technology))
+    navigate(`/age-of-empires/technology/${name}`)
+  }
   return (
-    <article className='card'>
+    <article className={`card ${ isVisible ? fade_in : '' }`} ref={ refCard}>
         <h3>Name: <span>{ name }</span></h3>
       <div className='card__info'>
         <p>Description: <span>{ description }</span></p>
@@ -68,7 +82,7 @@ export const TechnologyCard = ({ technology }) => {
       </div>
       <div className='card__expand'>
         <span onClick={ handleAddTechnology }>{ like_icon }</span>
-        <span >{ next_icon }</span>
+        <span onClick={ handleFullInformation }>{ next_icon }</span>
         {/* <canvas className='glass'></canvas> */}
       </div>
       <canvas className='glass--background'></canvas>

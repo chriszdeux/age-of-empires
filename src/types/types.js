@@ -19,4 +19,5 @@ export  const types = {
   store_technologies: '[Store] Technologies',
   delete_store_technologies: '[Delete] Technologies',
 
+  handle_data: '[Handle] Data',
 }

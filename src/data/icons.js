@@ -14,7 +14,8 @@ import {
   GiEvilBook,
   GiCastle,
   GiPodiumWinner,
-  GiStoneBlock
+  GiStoneBlock,
+  GiFlatHammer
  } from 'react-icons/gi';
 import { IoReloadOutline } from 'react-icons/io5';
 import { AiOutlineEye, AiOutlineRight } from 'react-icons/ai'
@@ -44,4 +45,5 @@ export const icons = {
   bonus_icon: <GiPodiumWinner className="icon bonus" />, 
   like_icon: <BiLike className="icon " />, 
   next_icon: <AiOutlineRight className="icon" />, 
+  build_icon: <GiFlatHammer className="icon build" />, 
 }

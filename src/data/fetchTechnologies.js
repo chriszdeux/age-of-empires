@@ -11,6 +11,5 @@ export const fetchTechnologies = async () => {
   }).catch(err => {
     return err.message
   })
-  console.log(data);
   return data
 }
