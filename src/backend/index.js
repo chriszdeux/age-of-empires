@@ -9,6 +9,9 @@ app.use(cors());
 
 
 
+app.get('./', (req, res) => {
+  res.send( 'Up' )
+});
 app.get('./civilizations', async (req, res) => {
   const data = await axios.get(`${url}/civilizations`).then(response => {
     // console.log(response.data)
