@@ -1,8 +1,8 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { actionHandleData } from '../../actions/actionHandleData'
-import { addTechnology } from '../../actions/actionTechnologies'
+import { addTechnology, delTechnology } from '../../actions/actionTechnologies'
 import { animations } from '../../data/animations'
 import { icons } from '../../data/icons'
 import { useIntersectionObserver } from '../../hooks/useIntersection'
@@ -17,14 +17,21 @@ export const TechnologyCard = ({ technology }) => {
     cost,
     build_time,
     applies_to,
+    like
   } = technology
 
   const { Food, Gold, Wood } = cost
-  const { expansion_icon, age_icon, wood_icon, gold_icon, food_icon, time_icon, like_icon, next_icon, castle_icon } = icons
+  const { expansion_icon, age_icon, wood_icon, gold_icon, food_icon, time_icon, like_icon, next_icon, castle_icon, close_icon } = icons
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const [handleLike, setHandleLike] = useState(false)
   const handleAddTechnology = () => {
     dispatch(addTechnology(technology))
+    setHandleLike(!handleLike)
+  }
+  const handleRemoveTechnology = () => {
+    dispatch(delTechnology(name))
+    setHandleLike(!handleLike)
   }
   const refCard = useRef(null)
   const isVisible = useIntersectionObserver(refCard)
@@ -35,6 +42,12 @@ export const TechnologyCard = ({ technology }) => {
     dispatch(actionHandleData(technology))
     navigate(`/age-of-empires/technology/${name}`)
   }
+
+  useEffect(() => {
+    if(like) {
+      setHandleLike(like)
+    }
+  }, [ technology])
   return (
     <article className={`card ${ isVisible ? fade_in : '' }`} ref={ refCard}>
         <h3>Name: <span>{ name }</span></h3>
@@ -81,7 +94,7 @@ export const TechnologyCard = ({ technology }) => {
           { time_icon }
       </div>
       <div className='card__expand'>
-        <span onClick={ handleAddTechnology }>{ like_icon }</span>
+      <span onClick={ !handleLike ? handleAddTechnology : handleRemoveTechnology }>{ !handleLike ? like_icon : close_icon}</span>
         <span onClick={ handleFullInformation }>{ next_icon }</span>
         {/* <canvas className='glass'></canvas> */}
       </div>

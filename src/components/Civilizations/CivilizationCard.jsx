@@ -1,22 +1,29 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { actionHandleData } from '../../actions/actionHandleData';
-import { addCivilization } from '../../actions/actionsCivilization';
+import { addCivilization, delCivilization } from '../../actions/actionsCivilization';
 import { animations } from '../../data/animations';
 import { icons } from '../../data/icons'
 import { useIntersectionObserver } from '../../hooks/useIntersection';
 import { useRandomColor } from '../../hooks/useRandomColor';
 
 export const CivilizationCard = ({ civilization }) => {
-  const { name, expansion, army_type, unique_unit, unique_tech,  team_bonus, civilization_bonus  } = civilization
-  const { expansion_icon, castle_icon,  bonus_icon, like_icon, next_icon } = icons;
+  const { name, expansion, army_type, unique_unit, unique_tech,  team_bonus, civilization_bonus, like  } = civilization
+  const { expansion_icon, castle_icon,  bonus_icon, like_icon, next_icon, close_icon } = icons;
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const [handleLike, setHandleLike] = useState(false)
+
   const handleAddCivilization = () => {
     dispatch( addCivilization(civilization) )
+    setHandleLike(!handleLike)
   }
-
+  const handleRemoveCivilization = () => {
+    dispatch( delCivilization(name) )
+    setHandleLike(!handleLike)
+  }
+  // debugger
   const { colorBorder, handleRandomColor } = useRandomColor(name)
   // debugger
   useEffect(() => {
@@ -30,6 +37,12 @@ export const CivilizationCard = ({ civilization }) => {
     dispatch(actionHandleData(civilization))
     navigate(`/age-of-empires/civilization/${name}`)
   }
+
+  useEffect(() => {
+    if(like) {
+      setHandleLike(like)
+    }
+  }, [ civilization])
 
   return (
     <article ref={ refCard } className={`card ${ isVisible ? fade_in : '' }`} >
@@ -61,7 +74,7 @@ export const CivilizationCard = ({ civilization }) => {
       </div>
 
       <div className='card__expand'>
-        <span onClick={ handleAddCivilization }>{ like_icon }</span>
+        <span onClick={ !handleLike ? handleAddCivilization : handleRemoveCivilization }>{ !handleLike ? like_icon : close_icon}</span>
         <span onClick={ handleFullInformation }>{ next_icon }</span>
         {/* <canvas className='glass'></canvas> */}
       </div>

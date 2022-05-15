@@ -1,6 +1,7 @@
 import { Civilizations } from "../components/Civilizations";
 import { CivilizationFullView } from "../components/Civilizations/CivilizationFullView";
 import { Home } from "../components/Home";
+import { MyLibrary } from "../components/my-library";
 import { Structures } from "../components/Structures";
 import { Technologies } from "../components/Technologies";
 import { TechnologyFullView } from "../components/Technologies/TechnologyFullView";
@@ -11,7 +12,7 @@ export const RoutesApp = [
 
   { 
       page: '',
-      route: '/' || '/age-of-empires',
+      route: '/',
       component: <Home /> 
   },
   { 
@@ -56,6 +57,10 @@ export const RoutesApp = [
   {   page: '',
       route: '/age-of-empires/technology/:id',
       component: <TechnologyFullView /> 
+  },
+  {   page: 'My Library',
+      route: '/age-of-empires/my-library/',
+      component: <MyLibrary /> 
   },
 ]
   // NotFound: '/error',

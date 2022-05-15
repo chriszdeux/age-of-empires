@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { RoutesApp } from '../../constants/routes'
 export const DeskNavbar = () => {
   const [routes, setRoutes] = useState([])
@@ -13,7 +13,7 @@ export const DeskNavbar = () => {
       <ul className='desk__routes'>
         {
           routes.map(({ page, route }) => (
-            <Link key={ route } to={ route }>{ page }</Link>
+            <NavLink key={ route } to={ route } className={ (nav) => nav.isActive ? 'active-nav' : '' }>{ page }</NavLink>
           ))
         }
       </ul>

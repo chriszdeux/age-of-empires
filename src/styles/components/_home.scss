@@ -1,0 +1,21 @@
+.main {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  h1 {
+    font-size: 4rem;
+    color: $secondary-color;
+  }
+  p {
+    font-size: $large-font;
+    width: 70%;
+    span {
+      color: $secondary-color;
+    }
+  }
+}

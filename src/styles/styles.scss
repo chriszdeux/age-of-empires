@@ -4,6 +4,7 @@
 
 //Components
 @import './components/header';
+@import './components/home';
 @import './components/cards';
 @import './components/civilizations';
 @import './components/units';
@@ -82,15 +83,18 @@ body {
 
 .full__view {
   .cards__wrapper {
-    justify-content: space-evenly;
+    flex-direction: column;
     // align-items: center;
-
+    // justify-content: space-evenly;
+    // // align-items: center;
+    // flex-wrap: wrap;
     .icon {
       font-size: 5rem;
       align-self: center;
     }
     .card__container {
       // margin-top: 5rem;
+      // margin-bottom: 5rem;
       h2 {
         text-align: center;
         font-size: $large-font;
@@ -98,6 +102,7 @@ body {
 
       .card {
         // width: 30rem;
+        // width: 50rem;
         height: 100%;
         .bonus__list {
           display: revert;
@@ -144,8 +149,132 @@ body {
     }
   }
 }
+
+.background__animated {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: -2;
+  .circle--1 {
+    position: absolute;
+    left: -50%;
+    bottom: -50%;
+    width: 100%;
+    height: 100%;
+    background-color: $circle-color;
+    filter: blur(30rem) opacity(.6);
+    border-radius: 50%;
+    animation: circle2 15s ease alternate infinite;
+  }
+  .circle--2 {
+    position: absolute;
+    right: -50%;
+    top: -50%;
+    width: 100%;
+    height: 100%;
+    background-color: $circle2-color;
+    filter: blur(30rem) opacity(.6);
+    border-radius: 50%;
+    animation: circle1 15s ease alternate infinite;
+  }
+  .squad--1 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 50rem;
+    height: 50rem;
+    border: 1px solid $main-color;
+    // background-color: $circle2-color;
+    filter: blur(1rem) opacity(.6);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    animation: squad1 2s ease alternate infinite;
+  }
+  span {
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    width: 100rem;
+    height: 100rem;
+    border: 1px solid $main-color;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    z-index: -2;
+    animation: squad1 2s ease alternate infinite;
+    filter: blur(1rem) opacity(.3);
+    .icon {
+      width: inherit;
+      height: inherit;
+      color: $main-color;
+      // background-color: $circle2-color;
+      // filter: blur(1rem) opacity(.6);
+    }
+  }
+}
+
+.active-nav {
+  border-bottom: 1px solid $main-color;
+}
+
+@keyframes circle1 {
+  0% {
+    transform: translateY(150%) scale(0);
+  }
+
+  100% {
+    transform: translateY(-150%) scale(1);
+  }
+}
+@keyframes circle2 {
+  0% {
+    transform: translateY(-50%) scale(1);
+  }
+
+  100% {
+    transform: translateY(150%) scale(0);
+  }
+}
+@keyframes squad1 {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+@keyframes pulse {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1.1);
+  }
+}
 @media only screen and ( min-width: 1600px ) {
   .container {
     width: 70%;
+  }
+}
+
+@media only screen and ( min-width: 768px ) {
+  .full__view {
+    .cards__wrapper {
+      flex-direction: row;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+      // align-items: fle;
+      .card__container {
+        margin-bottom: 10rem;
+        // height: auto;
+        .card {
+          // margin-top: 10rem;
+        }
+      }
+    }
   }
 }

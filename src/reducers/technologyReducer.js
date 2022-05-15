@@ -11,12 +11,12 @@ export const technologyReducer = ( state = [], action ) => {
   switch (action.type) {
     case types.add_technology:
       if(state.find( item => item.id === action.payload.id )) {
-        
+        return state
       }
-      return [{...action.payload}, ...state];
+      return [{...action.payload, like: true}, ...state];
     case types.remove_technology:
       return state.filter(item => {
-        return item.id !== action.payload
+        return item.name !== action.payload
       })
 
     default:

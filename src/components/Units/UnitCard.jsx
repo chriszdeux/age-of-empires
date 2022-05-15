@@ -1,9 +1,9 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { actionHandleData } from '../../actions/actionHandleData';
 import { addCivilization } from '../../actions/actionsCivilization';
-import { addUnit } from '../../actions/actionsUnits';
+import { addUnit, removeUnit } from '../../actions/actionsUnits';
 import { animations } from '../../data/animations';
 import { icons } from '../../data/icons'
 import { useIntersectionObserver } from '../../hooks/useIntersection';
@@ -14,21 +14,27 @@ export const UnitCard = ({ unit }) => {
     line_of_sight,
     hit_points,
     attack,
-    armor, id, attack_bonus } = unit
+    armor, id, attack_bonus, like } = unit
     const { Gold:gold, Wood:wood, info, Cost, Provides } = cost
     const { Food } = typeof(Provides) === 'object' && Provides
     const { expansion_icon, castle_icon, food_icon, age_icon, bonus_icon, like_icon, next_icon, gold_icon, wood_icon, time_icon, reload_icon,move_icon,
     hit_icon,
     attack_icon,
     range_icon,
-    armor_icon, build_icon} = icons;
-    
+    armor_icon, build_icon, close_icon} = icons;
+    const [handleLike, setHandleLike] = useState(false)
+
     // debugger
     const dispatch = useDispatch();
     const navigate = useNavigate()
     // debugger
     const handleAddUnit = () => {
       dispatch( addUnit(unit) )
+      setHandleLike(!handleLike)
+    }
+    const handleRemoveUnit = () => {
+      dispatch( removeUnit(name) )
+      setHandleLike(!handleLike)
     }
 
     const handleFullInformation = () => {
@@ -39,6 +45,13 @@ export const UnitCard = ({ unit }) => {
     const refCard = useRef(null)
     const isVisible = useIntersectionObserver(refCard)
     const { fade_in } = animations
+
+    useEffect(() => {
+      if(like) {
+        setHandleLike(like)
+      }
+    }, [ unit])
+
     return (
     <article className={`card ${ isVisible ? fade_in : '' }`} ref={ refCard }>
         <h3>Civilization: <span>{ name }</span></h3>
@@ -146,7 +159,7 @@ export const UnitCard = ({ unit }) => {
         </div>
       </div>
       <div className='card__expand'>
-        <span onClick={ handleAddUnit }>{ like_icon }</span>
+      <span onClick={ !handleLike ? handleAddUnit : handleRemoveUnit }>{ !handleLike ? like_icon : close_icon}</span>
         <span onClick={ handleFullInformation }>{ next_icon }</span>
         {/* <canvas className='glass'></canvas> */}
       </div>

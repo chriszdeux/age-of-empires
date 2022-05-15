@@ -10,6 +10,7 @@ import { storeCivilizations } from '../actions/actionsCivilization';
 import { storeStructures } from '../actions/actionsStructures';
 import { storeUnits } from '../actions/actionsUnits';
 import { storeTechnologies } from '../actions/actionTechnologies';
+import { BackgroundAnimated } from '../components/BackgroundAnimated';
 import { Civilizations } from '../components/Civilizations';
 import { Header } from '../components/header';
 import { MobileNavbar } from '../components/header/MobileNavbar';
@@ -70,6 +71,7 @@ export const MainRouter = () => {
       {
           show && <MobileNavbar handleShow={ handleShow }/>
         }
+        <BackgroundAnimated />
     </Router>
     </>
   )

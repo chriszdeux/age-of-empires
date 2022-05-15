@@ -1,25 +1,39 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { addStructure } from '../../actions/actionsStructures';
+import { addStructure, removeStructure } from '../../actions/actionsStructures';
 import { animations } from '../../data/animations';
 import { icons } from '../../data/icons';
 import { useIntersectionObserver } from '../../hooks/useIntersection';
 
 export const StructureCard = ({ structure }) => {
-  const { age, armor, build_time, cost, expansion, hit_points, line_of_sight, name, special } = structure
+  const { age, armor, build_time, cost, expansion, hit_points, line_of_sight, name, special, like } = structure
   const { Wood, Gold, Stone } = cost
   // debugger
-  const { expansion_icon, time_icon,  wood_icon, like_icon, next_icon, armor_icon, age_icon, hit_icon, range_icon, gold_icon, stone_icon, castle_icon } = icons;
+  const { expansion_icon, time_icon,  wood_icon, like_icon, next_icon, armor_icon, age_icon, hit_icon, range_icon, gold_icon, stone_icon, castle_icon, close_icon } = icons;
+  const [handleLike, setHandleLike] = useState(false)
 
   const dispatch = useDispatch()
+  
   const handleAddStructure = () => {
     dispatch( addStructure(structure) )
+    setHandleLike(!handleLike)
   }
-
+  const handleRemoveStructure = () => {
+    dispatch( removeStructure(name) )
+    setHandleLike(!handleLike)
+  }
   const refCard = useRef(null)
     const isVisible = useIntersectionObserver(refCard)
     const { fade_in } = animations
 // debugger
+
+
+  useEffect(() => {
+    if(like) {
+      setHandleLike(like)
+    }
+  }, [ structure ])
+
   return (
     <article className={`card ${ isVisible ? fade_in : '' }`} ref={ refCard }>
         <h3>Structure: <span>{ name }</span></h3>
@@ -89,7 +103,7 @@ export const StructureCard = ({ structure }) => {
       </ul>
 
       <div className='card__expand'>
-        <span onClick={ handleAddStructure }>{ like_icon }</span>
+      <span onClick={ !handleLike ? handleAddStructure : handleRemoveStructure }>{ !handleLike ? like_icon : close_icon}</span>
         {/* <span >{ next_icon }</span> */}
         {/* <canvas className='glass'></canvas> */}
       </div>

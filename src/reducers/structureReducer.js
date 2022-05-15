@@ -11,12 +11,12 @@ export const structureReducer = ( state = [], action ) => {
   switch (action.type) {
     case types.add_structure:
       if(state.find( item => item.id === action.payload.id )) {
-        
+        return state
       }
-      return [{...action.payload}, ...state];
+      return [{...action.payload, like: true}, ...state];
     case types.remove_structure:
       return state.filter(item => {
-        return item.id !== action.payload
+        return item.name !== action.payload
       })
 
     default:
