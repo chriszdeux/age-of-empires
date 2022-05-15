@@ -8,71 +8,60 @@ const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(cors());
+app.use(cors());
+
 
 
 app.get('/', (req, res) => {
-  setTimeout(() => {
-    res.send( 'welcome' )
-  }, 1000);
+  res.send( 'welcome' )
 });
 app.get('/civilizations', async (req, res) => {
+  const data = await axios.get(`${url}/civilizations`).then(response => {
+    // console.log(response.data)
+    return response.data
+  })
 
-  setTimeout( async () => {
-    const data = await axios.get(`${url}/civilizations`).then(response => {
-      // console.log(response.data)
-      return response.data
-    })
-    res.json(data)
-  }, 1000);
-
+  res.json(data)
 });
 app.get('/civilization/:id', async (req, res) => {
 
   const { id } = req.params
   console.log(id)
-  setTimeout( async () => {
   const data = await axios.get(`${url}/civilization/${id}`).then(response => {
     console.log(response.data)
     return response.data
   })
 
   res.json(data)
-}, 1100);
 });
 
 app.get('/units', async (req, res) => {
-  setTimeout( async () => {
   const data = await axios.get(`${url}/units`).then(response => {
     // console.log(response.data)
     return response.data
   })
 
   res.json(data)
-}, 1200);
 })
 
 
 app.get('/structures', async (req, res) => {
-  setTimeout( async () => {
   const data = await axios.get(`${url}/structures`).then(response => {
     // console.log(response.data)
     return response.data
   })
 
   res.json(data)
-}, 1400);
 })
 
 
 app.get('/technologies', async (req, res) => {
-  setTimeout( async () => {
   const data = await axios.get(`${url}/technologies`).then(response => {
     // console.log(response.data)
     return response.data
   })
 
   res.json(data)
-}, 1500);
 })
 
 
