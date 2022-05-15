@@ -4,9 +4,10 @@ const axios = require('axios');
 const app = express();
 const port = 8000;
 const url = 'https://age-of-empires-2-api.herokuapp.com/api/v1';
-
+const bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
 app.use(cors());
-
 
 
 app.get('/', (req, res) => {
