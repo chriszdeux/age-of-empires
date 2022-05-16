@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = 'http://localhost:8000/technologies';
+const url = 'https://age-of-empire.herokuapp.com/technologies';
 
 export const fetchTechnologies = async () => {
   const data = await axios.get(url).then(response => {

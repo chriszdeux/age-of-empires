@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = 'http://localhost:8000/structures';
+const url = 'https://age-of-empire.herokuapp.com/structures';
 
 export const fetchStructures = async () => {
   const data = await axios.get(url).then(response => {

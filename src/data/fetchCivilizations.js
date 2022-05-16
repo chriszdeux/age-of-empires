@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = 'http://localhost:8000/civilizations';
+const url = 'https://age-of-empire.herokuapp.com/civilizations';
 
 export const fetchCivilizations = async () => {
   const data = await axios.get(url).then(response => {
