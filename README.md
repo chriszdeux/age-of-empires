@@ -7,5 +7,4 @@ Este comando iniciara el servidor backend ( siempre primero desplegar el backend
 Iniciara el servidor para el frontend.
 
 
-# Note
-La version live aun no funciona.
+Live del projecto: https://chriszdeux.github.io/age-of-empires
